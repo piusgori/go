@@ -98,5 +98,5 @@ func main() {
 		// }
 	}
 
-	fmt.Println("Thanks for choosing our bank")
+	// fmt.Println("Thanks for choosing our bank")
 }
