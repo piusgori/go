@@ -6,8 +6,9 @@ func main() {
 
 	var accountBalance float64 = 1000;
 
-	for i := 0; i < 2; i++ {
-		fmt.Println("Welcome to Go Bank!")
+	fmt.Println("Welcome to Go Bank!")
+
+	for {
 		fmt.Println("What do you want to do?")
 		fmt.Println("1. Check balance")
 		fmt.Println("2. Deposit money")
@@ -27,7 +28,7 @@ func main() {
 	
 			if depositAmount <= 0 {
 				fmt.Println("Invalid amount. Must be greater than 0.")
-				return
+				continue
 			}
 	
 			accountBalance += depositAmount
@@ -39,18 +40,22 @@ func main() {
 	
 			if withdrawalAmount <= 0 {
 				fmt.Println("Invalid amount. Must be greater than 0.")
-				return
+				continue
 			}
 	
 			if withdrawalAmount > accountBalance {
 				fmt.Println("Invalid amount. You can't withdraw more than you have.")
-				return
+				continue
 			}
 	
 			accountBalance -= withdrawalAmount
 			fmt.Println("Balance updated! New amount:", accountBalance)
 		} else {
 			fmt.Println("Goodbye!")
+			// return
+			break
 		}
 	}
+
+	fmt.Println("Thanks for choosing our bank")
 }
