@@ -18,15 +18,19 @@ func main() {
 	userBirthdate := getUserData("Please enter your birthdate (MM/DD/YYYY): ")
 
 	var appUser User = User{
-		userFirstName,
-		userLastName,
-		userBirthdate,
-		time.Now(),
+		firstName: userFirstName,
+		lastName: userLastName,
+		birthdate: userBirthdate,
+		createdAt: time.Now(),
 	}
 
 	// ... do something awesome with that gathered data!
 
-	// fmt.Println(firstName, lastName, birthdate)
+	outputUserDetails(appUser)
+}
+
+func outputUserDetails (u User) {
+	fmt.Println(u.firstName, u.lastName, u.birthdate)
 }
 
 func getUserData(promptText string) string {
