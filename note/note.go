@@ -69,9 +69,9 @@ func printSomething(value interface{}) {
 	}
 
 	floatVal, ok := value.(float64)
-
+ 
 	if ok {
-		fmt.Println("Float:", floatVal)
+		fmt.Println ("Float:", floatVal)
 	}
 
 	stringVal, ok := value.(string)
