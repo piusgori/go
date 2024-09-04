@@ -2,6 +2,10 @@ package main
 
 import "fmt"
 
+type transformFn func(int) int
+
+// type anotherFn func(int, []string, map[string][]int) ([]int, string)
+
 func main() {
 	numbers := []int{1,2,3,4}
 
@@ -12,7 +16,7 @@ func main() {
 	fmt.Println(doubled, trippled)
 }
 
-func transformNumbers(numbers *[]int, transform func(int) int) []int {
+func transformNumbers(numbers *[]int, transform transformFn) []int {
 	dNumbers := []int{}
 	for _, val := range *numbers {
 		dNumbers = append(dNumbers, transform(val))
