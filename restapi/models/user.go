@@ -1,6 +1,9 @@
 package models
 
 import (
+	"errors"
+	"fmt"
+
 	"example.com/restapi/db"
 	"example.com/restapi/utils"
 )
@@ -41,15 +44,23 @@ func (u User) Save() error {
 }
 
 func (u User) ValidateCredentials() error {
-	query := `SELECT email, password FROM users WHERE email = ?`
+	query := `SELECT id, password FROM users WHERE email = ?`
 
 	row := db.DB.QueryRow(query, u.Email)
 	var retrievedPassword string
 	
-	err := row.Scan(&retrievedPassword)
+	err := row.Scan(&u.ID, &retrievedPassword)
 
 	if err != nil {
-		return err
+		fmt.Println(err)
+		return errors.New("invalid credentials")
+	}
+
+	passwordIsValid := utils.CheckPasswordHash(u.Password, retrievedPassword)
+
+	fmt.Println(passwordIsValid)
+	if !passwordIsValid {
+		return errors.New("invalid credentials")
 	}
 
 	return nil
